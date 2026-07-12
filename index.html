@@ -1,486 +1,822 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CA Vivek Singhal</title>
-    <style>
-        /* =========================================
-           CSS VARIABLES & THEMES
-           ========================================= */
-        :root {
-            /* Default: Theme 85 (Blue-White-Black) */
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --primary-color: #004488;
-            --secondary-color: #0066cc;
-            --card-bg: rgba(245, 247, 250, 0.9);
-            --header-bg: rgba(0, 68, 136, 0.9);
-            --header-text: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CA Vivek Singhal — Chartered Accountant | Audit, Assurance & Advisory</title>
+<meta name="description" content="CA Vivek Singhal — Chartered Accountant offering statutory audit, bank audit, IT audit, risk assurance, financial due diligence and advisory services.">
 
-        [data-theme="theme88"] {
-            /* Theme 88 (Orange-White-Black) */
-            --bg-color: #ffffff;
-            --text-color: #1a1a1a;
-            --primary-color: #ff6600;
-            --secondary-color: #ff8533;
-            --card-bg: rgba(255, 245, 238, 0.9);
-            --header-bg: rgba(255, 102, 0, 0.9);
-            --header-text: #ffffff;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-        [data-theme="theme87"] {
-            /* Theme 87 (White/Clean) */
-            --bg-color: #fcfcfc;
-            --text-color: #333333;
-            --primary-color: #555555;
-            --secondary-color: #888888;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --header-text: #222222;
-        }
+<style>
+/* =========================================================
+   TOKENS — five refined professional palettes
+   ========================================================= */
+:root,
+[data-theme="navy"] {
+  --bg: #F6F3EA;
+  --ink: #17233A;
+  --ink-soft: #4A5468;
+  --primary: #0E2A4A;
+  --gold: #AD8438;
+  --card-bg: #FFFFFF;
+  --panel: #0A2240;
+  --panel-text: #F4F1E6;
+  --panel-text-soft: #B9C3D4;
+  --line: rgba(14, 42, 74, 0.16);
+  --line-panel: rgba(244, 241, 230, 0.16);
+}
 
-        [data-theme="theme83"] {
-            /* Theme 83 (Trust & Captivating) */
-            --bg-color: #f4f7f6;
-            --text-color: #2c3e50;
-            --primary-color: #18bc9c;
-            --secondary-color: #128f76;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --header-bg: rgba(24, 188, 156, 0.9);
-            --header-text: #ffffff;
-        }
+[data-theme="emerald"] {
+  --bg: #F4F4EC;
+  --ink: #17281F;
+  --ink-soft: #4B5A52;
+  --primary: #1E4B3D;
+  --gold: #AD8438;
+  --card-bg: #FFFFFF;
+  --panel: #112E24;
+  --panel-text: #EFF1E8;
+  --panel-text-soft: #B9C7BE;
+  --line: rgba(18, 50, 41, 0.16);
+  --line-panel: rgba(239, 241, 232, 0.16);
+}
 
-        [data-theme="ca1"] {
-            /* Dark Blue and White Professional (CA-1) */
-            --bg-color: #0a192f;
-            --text-color: #e6f1ff;
-            --primary-color: #64ffda;
-            --secondary-color: #52e0c4;
-            --card-bg: rgba(17, 34, 64, 0.9);
-            --header-bg: rgba(10, 25, 47, 0.95);
-            --header-text: #64ffda;
-        }
+[data-theme="graphite"] {
+  --bg: #FAFAF7;
+  --ink: #24262B;
+  --ink-soft: #585C64;
+  --primary: #34383F;
+  --gold: #96773E;
+  --card-bg: #FFFFFF;
+  --panel: #1C1E23;
+  --panel-text: #F2F1EC;
+  --panel-text-soft: #ACAFB8;
+  --line: rgba(36, 38, 43, 0.14);
+  --line-panel: rgba(242, 241, 236, 0.14);
+}
 
-        /* =========================================
-           RESET & BASE STYLES
-           ========================================= */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+[data-theme="burgundy"] {
+  --bg: #F6F0E9;
+  --ink: #2A1418;
+  --ink-soft: #654048;
+  --primary: #5A1B2C;
+  --gold: #AD8438;
+  --card-bg: #FFFFFF;
+  --panel: #360F1C;
+  --panel-text: #F3E7E3;
+  --panel-text-soft: #CBA9AF;
+  --line: rgba(90, 27, 44, 0.16);
+  --line-panel: rgba(243, 231, 227, 0.16);
+}
 
-        body, html {
-            height: 100%;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.5s ease, color 0.5s ease;
-            overflow: hidden; /* Hide body scroll, handle scroll in parallax wrapper */
-        }
+[data-theme="midnight"] {
+  --bg: #0C1220;
+  --ink: #E9E6DA;
+  --ink-soft: #A2A6B2;
+  --primary: #D2AC68;
+  --gold: #D2AC68;
+  --card-bg: #131B2C;
+  --panel: #070B14;
+  --panel-text: #E9E6DA;
+  --panel-text-soft: #8D93A2;
+  --line: rgba(210, 172, 104, 0.18);
+  --line-panel: rgba(233, 230, 218, 0.14);
+}
 
-        /* =========================================
-           HEADER & NAVIGATION
-           ========================================= */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-            background: var(--header-bg);
-            color: var(--header-text);
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.5s ease;
-        }
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Animated Title */
-        .animated-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, var(--header-text), var(--secondary-color), var(--header-text));
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: shine 3s linear infinite;
-        }
+html { scroll-behavior: smooth; }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
 
-        /* Theme Selector (Hover Down Button) */
-        .theme-selector {
-            position: relative;
-            display: inline-block;
-        }
+a { color: inherit; }
+button { font-family: inherit; }
 
-        .theme-btn {
-            background-color: transparent;
-            color: var(--header-text);
-            border: 2px solid var(--header-text);
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.eyebrow.on-panel { color: var(--gold); }
+.eyebrow.center { text-align: center; }
 
-        .theme-btn:hover {
-            background-color: var(--header-text);
-            color: var(--header-bg);
-        }
+.serif { font-family: 'Playfair Display', serif; }
 
-        .theme-dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background-color: var(--card-bg);
-            min-width: 220px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            border-radius: 5px;
-            overflow: hidden;
-            z-index: 1;
-            margin-top: 10px;
-            animation: slideDown 0.3s ease forwards;
-        }
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
 
-        .theme-selector:hover .theme-dropdown {
-            display: block;
-        }
+/* =========================================================
+   HEADER
+   ========================================================= */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 5%;
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line-panel);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
 
-        .theme-option {
-            color: var(--text-color);
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            cursor: pointer;
-            transition: background 0.3s;
-            font-weight: 500;
-            border-bottom: 1px solid rgba(128,128,128,0.1);
-        }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
 
-        .theme-option:hover {
-            background-color: var(--primary-color);
-            color: #fff;
-        }
+.brand-seal {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1.4px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  flex-shrink: 0;
+}
 
-        /* =========================================
-           3D PARALLAX SCROLLING WRAPPER
-           ========================================= */
-        .parallax-wrapper {
-            height: 100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-            perspective: 10px; /* The soul of the 3D effect */
-            scroll-behavior: smooth;
-        }
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--panel-text);
+  letter-spacing: 0.01em;
+}
+.brand-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--panel-text-soft);
+}
 
-        .parallax-group {
-            position: relative;
-            height: 100vh;
-            transform-style: preserve-3d;
-        }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-        /* Background Layer (Moves slower) */
-        .parallax-layer-bg {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            transform: translateZ(-10px) scale(2.1);
-            z-index: -1;
-            background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.wa-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line-panel);
+  color: var(--panel-text);
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.wa-pill:hover { border-color: var(--gold); background: rgba(255,255,255,0.04); }
 
-        /* Decorational Background Elements */
-        .bg-shape {
-            position: absolute;
-            background: var(--primary-color);
-            opacity: 0.05;
-            border-radius: 50%;
-        }
-        .shape1 { width: 50vw; height: 50vw; top: -10%; left: -10%; }
-        .shape2 { width: 40vw; height: 40vw; bottom: 20%; right: -5%; }
+.theme-selector { position: relative; }
 
-        /* Foreground Layer (Scrolls normally) */
-        .parallax-layer-fg {
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            transform: translateZ(0);
-            z-index: 1;
-            padding-top: 120px; /* Offset for header */
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+.theme-btn {
+  background: transparent;
+  color: var(--panel-text);
+  border: 1px solid var(--line-panel);
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.theme-btn:hover { border-color: var(--gold); }
 
-        /* =========================================
-           SERVICES SECTION
-           ========================================= */
-        .services-section {
-            padding: 40px 5%;
-            flex: 1;
-        }
+.theme-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  background: var(--card-bg);
+  min-width: 210px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  border: 1px solid var(--line);
+}
+.theme-dropdown.open { display: block; }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  color: var(--ink);
+  font-size: 0.82rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s ease;
+}
+.theme-option:last-child { border-bottom: none; }
+.theme-option:hover { background: var(--bg); }
+.theme-option .swatch {
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+  flex-shrink: 0;
+}
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            padding-bottom: 60px;
-        }
+/* =========================================================
+   HERO / PARALLAX
+   ========================================================= */
+.scroll-wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  perspective: 3px;
+  -webkit-overflow-scrolling: touch;
+}
 
-        .service-card {
-            background: var(--card-bg);
-            border-left: 4px solid var(--primary-color);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            
-            /* Scroll Animation Defaults */
-            opacity: 0;
-            transform: translateY(30px);
-        }
+.hero {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--panel);
+}
 
-        .service-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(-3px) scale(2);
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(var(--line-panel) 0 1px, transparent 1px 48px);
+  opacity: 0.6;
+}
 
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            background: var(--primary-color);
-            color: #ffffff;
-        }
+.hero-seal {
+  position: absolute;
+  right: 6%;
+  bottom: -8%;
+  width: 46vh;
+  height: 46vh;
+  opacity: 0.08;
+  transform: translateZ(-3px) scale(2);
+}
+.hero-seal svg { width: 100%; height: 100%; }
 
-        .service-card:hover h3 { color: #ffffff; }
+.hero-fg {
+  position: relative;
+  z-index: 2;
+  transform: translateZ(0);
+  max-width: 780px;
+  padding: 0 6% 40px;
+  text-align: center;
+  color: var(--panel-text);
+}
 
-        .service-card h3 {
-            font-size: 1.2rem;
-            color: var(--text-color);
-            margin-bottom: 10px;
-            transition: color 0.3s ease;
-        }
+.hero-name-wrap {
+  position: relative;
+  display: inline-block;
+  margin: 18px 0 22px;
+}
 
-        .whatsapp-icon {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            opacity: 0.2;
-            font-size: 1.5rem;
-            transition: opacity 0.3s ease;
-        }
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 6vw, 4.1rem);
+  letter-spacing: 0.005em;
+  background: linear-gradient(100deg, var(--panel-text) 40%, var(--gold) 50%, var(--panel-text) 60%);
+  background-size: 260% auto;
+  background-position: 0% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 7s ease-in-out infinite;
+}
 
-        .service-card:hover .whatsapp-icon {
-            opacity: 1;
-        }
+@keyframes shine {
+  0%, 15% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  85%, 100% { background-position: 0% center; }
+}
 
-        /* =========================================
-           FOOTER
-           ========================================= */
-        footer {
-            background: var(--header-bg);
-            color: var(--header-text);
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: auto;
-            position: relative;
-            overflow: hidden;
-        }
+.signature-underline {
+  display: block;
+  width: 82%;
+  margin: 6px auto 0;
+  height: 22px;
+  overflow: visible;
+}
+.signature-underline path {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.6s 0.5s cubic-bezier(.25,.7,.35,1) forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
 
-        .footer-content {
-            position: relative;
-            z-index: 2;
-            animation: pulseFooter 3s infinite;
-        }
+.hero-sub {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--panel-text-soft);
+  max-width: 560px;
+  margin: 0 auto 32px;
+}
 
-        @keyframes pulseFooter {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
 
-        footer p {
-            margin: 5px 0;
-            font-size: 1.1rem;
-        }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 4px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+.btn:hover { transform: translateY(-2px); }
 
-        footer a {
-            color: var(--secondary-color);
-            font-weight: bold;
-            text-decoration: none;
-        }
-        
-        [data-theme="theme87"] footer a { color: var(--primary-color); }
-        [data-theme="ca1"] footer a { color: var(--primary-color); }
+.btn-primary {
+  background: var(--gold);
+  color: var(--panel);
+}
+.btn-primary:hover { background: color-mix(in srgb, var(--gold) 88%, white); }
 
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            header { flex-direction: column; padding: 15px; }
-            .theme-selector { margin-top: 15px; }
-            .parallax-layer-fg { padding-top: 150px; }
-            .section-title { font-size: 2rem; }
-        }
-    </style>
+.btn-ghost {
+  border-color: var(--line-panel);
+  color: var(--panel-text);
+  background: transparent;
+}
+.btn-ghost:hover { border-color: var(--gold); }
+
+.hero-credential {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--panel-text-soft);
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%) translateZ(0);
+  z-index: 2;
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(var(--line-panel), transparent);
+}
+.scroll-cue::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -2px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: cue 2.2s ease-in-out infinite;
+}
+@keyframes cue {
+  0% { top: 0; opacity: 0; }
+  20% { opacity: 1; }
+  90% { opacity: 0; }
+  100% { top: 30px; opacity: 0; }
+}
+
+/* =========================================================
+   TRUST STRIP
+   ========================================================= */
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--line);
+}
+.trust-item {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 20px 26px;
+  border-left: 1px solid var(--line);
+}
+.trust-item:first-child { border-left: none; }
+
+/* =========================================================
+   SERVICES — "Schedule of Services" ledger
+   ========================================================= */
+.services-section {
+  padding: 90px 6% 40px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.section-head { text-align: center; margin-bottom: 54px; }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  color: var(--ink);
+  margin-top: 10px;
+}
+.section-title .rule {
+  display: block;
+  width: 54px;
+  height: 2px;
+  background: var(--gold);
+  margin: 20px auto 0;
+}
+
+.ledger {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
+  border-top: 1px solid var(--line);
+}
+
+.ledger-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 2px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: padding-left 0.3s ease, background 0.3s ease;
+}
+.ledger-row:hover,
+.ledger-row:focus-visible {
+  padding-left: 10px;
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
+}
+
+.ledger-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 26px;
+}
+
+.ledger-name {
+  flex: 1;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.ledger-cta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.ledger-row:hover .ledger-cta,
+.ledger-row:focus-visible .ledger-cta {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--primary);
+}
+
+.ledger-row.visible { animation: rowIn 0.5s ease both; }
+@keyframes rowIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer {
+  background: var(--panel);
+  color: var(--panel-text);
+  margin-top: 80px;
+  padding: 56px 6% 34px;
+}
+
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 36px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.footer-inner.visible { opacity: 1; transform: translateY(0); }
+
+.footer-brand { display: flex; gap: 14px; align-items: center; max-width: 340px; }
+.footer-brand-text .brand-name { color: var(--panel-text); }
+.footer-tagline {
+  font-size: 0.86rem;
+  color: var(--panel-text-soft);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.footer-contact { text-align: right; }
+.footer-contact p {
+  font-size: 0.9rem;
+  margin: 6px 0;
+  color: var(--panel-text-soft);
+}
+.footer-contact a {
+  color: var(--panel-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-panel);
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.footer-contact a:hover { color: var(--gold); border-color: var(--gold); }
+
+.footer-rule {
+  max-width: 1080px;
+  margin: 34px auto 0;
+  border-top: 1px solid var(--line-panel);
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--panel-text-soft);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 760px) {
+  header { padding: 14px 5%; }
+  .brand-tag { display: none; }
+  .header-actions { gap: 8px; }
+  .wa-pill span.wa-label { display: none; }
+  .ledger { grid-template-columns: 1fr; }
+  .services-section { padding: 70px 6% 20px; }
+  .footer-contact { text-align: left; }
+  .footer-inner { flex-direction: column; }
+}
+</style>
 </head>
-<body data-theme="theme85"> <!-- Default Theme -->
+<body data-theme="navy">
 
-    <!-- Header -->
-    <header>
-        <div class="animated-title">CA Vivek Singhal</div>
-        <div class="theme-selector">
-            <button class="theme-btn">Select Theme ▼</button>
-            <div class="theme-dropdown">
-                <div class="theme-option" onclick="changeTheme('theme88')">Theme 88 (Orange-White-Black)</div>
-                <div class="theme-option" onclick="changeTheme('theme85')">Theme 85 (Blue-White-Black)</div>
-                <div class="theme-option" onclick="changeTheme('theme87')">Theme 87 (White/Clean)</div>
-                <div class="theme-option" onclick="changeTheme('theme83')">Theme 83 (Trust & Captivating)</div>
-                <div class="theme-option" onclick="changeTheme('ca1')">Dark Blue & White (CA-1)</div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Parallax Scroll Wrapper -->
-    <div class="parallax-wrapper" id="scroll-wrapper">
-        <div class="parallax-group">
-            
-            <!-- Layer 1: Background (Moves slowly to create depth) -->
-            <div class="parallax-layer-bg">
-                <div class="bg-shape shape1"></div>
-                <div class="bg-shape shape2"></div>
-            </div>
-
-            <!-- Layer 2: Foreground Content -->
-            <div class="parallax-layer-fg">
-                <main class="services-section">
-                    <h2 class="section-title">Our Professional Services</h2>
-                    <div class="services-grid" id="services-grid">
-                        <!-- Services dynamically injected by JavaScript -->
-                    </div>
-                </main>
-
-                <!-- Animated Footer -->
-                <footer>
-                    <div class="footer-content">
-                        <p>For more services contact us at Email: <strong>caviveksinghalca@gmail.com</strong></p>
-                        <p>Or drop us a greeting at <strong>9079936244</strong></p>
-                    </div>
-                </footer>
-            </div>
-
-        </div>
+<header>
+  <a href="#top" class="brand">
+    <span class="brand-seal">VS</span>
+    <span class="brand-text">
+      <span class="brand-name">CA Vivek Singhal</span>
+      <span class="brand-tag">Chartered Accountant</span>
+    </span>
+  </a>
+  <div class="header-actions">
+    <a href="#" class="wa-pill" id="header-wa">
+      <span aria-hidden="true">&#9742;</span><span class="wa-label">WhatsApp</span>
+    </a>
+    <div class="theme-selector">
+      <button class="theme-btn" id="theme-btn" aria-haspopup="true" aria-expanded="false">
+        Theme <span aria-hidden="true">&#9662;</span>
+      </button>
+      <div class="theme-dropdown" id="theme-dropdown" role="menu">
+        <div class="theme-option" role="menuitem" data-theme="navy"><span class="swatch" style="background:#0E2A4A"></span>Ledger Navy</div>
+        <div class="theme-option" role="menuitem" data-theme="emerald"><span class="swatch" style="background:#1E4B3D"></span>Emerald Trust</div>
+        <div class="theme-option" role="menuitem" data-theme="graphite"><span class="swatch" style="background:#34383F"></span>Slate Graphite</div>
+        <div class="theme-option" role="menuitem" data-theme="burgundy"><span class="swatch" style="background:#5A1B2C"></span>Burgundy Seal</div>
+        <div class="theme-option" role="menuitem" data-theme="midnight"><span class="swatch" style="background:#0C1220"></span>Midnight Gold</div>
+      </div>
     </div>
+  </div>
+</header>
 
-    <!-- JavaScript -->
-    <script>
-        // 1. Theme Switcher Logic
-        function changeTheme(themeName) {
-            document.body.setAttribute('data-theme', themeName);
+<div class="scroll-wrapper" id="scroll-wrapper">
+
+  <section class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-seal" aria-hidden="true">
+      <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="96" fill="none" stroke="var(--panel-text)" stroke-width="1.5"/><circle cx="100" cy="100" r="82" fill="none" stroke="var(--panel-text)" stroke-width="1"/><text x="100" y="112" text-anchor="middle" font-family="Playfair Display, serif" font-size="52" fill="var(--panel-text)">VS</text></svg>
+    </div>
+    <div class="hero-fg">
+      <p class="eyebrow on-panel">Chartered Accountant</p>
+      <div class="hero-name-wrap">
+        <h1 class="hero-name">CA Vivek Singhal</h1>
+        <svg class="signature-underline" viewBox="0 0 300 22" preserveAspectRatio="none" aria-hidden="true">
+          <path pathLength="1" d="M2,16 C40,4 70,20 100,10 C130,0 160,18 190,8 C220,-2 250,16 298,6" />
+        </svg>
+      </div>
+      <p class="hero-sub">Audit, assurance and financial advisory built on precision, discretion, and a signature you can rely on.</p>
+      <div class="hero-cta">
+        <a href="#services" class="btn btn-primary">View Services</a>
+        <a href="#" class="btn btn-ghost" id="hero-wa">Message on WhatsApp</a>
+      </div>
+      <p class="hero-credential">Member &middot; Institute of Chartered Accountants of India</p>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"></div>
+  </section>
+
+  <div class="trust-strip">
+    <div class="trust-item">Statutory &amp; Bank Audit</div>
+    <div class="trust-item">IT &amp; Risk Assurance</div>
+    <div class="trust-item">Financial Due Diligence</div>
+    <div class="trust-item">NGO &amp; Trust Audits</div>
+  </div>
+
+  <main class="services-section" id="services">
+    <div class="section-head">
+      <p class="eyebrow center">Our Practice Areas</p>
+      <h2 class="section-title serif">Schedule of Services<span class="rule"></span></h2>
+    </div>
+    <div class="ledger" id="services-grid"><!-- injected by JS --></div>
+  </main>
+
+  <footer>
+    <div class="footer-inner" id="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-seal">VS</span>
+        <span class="footer-brand-text">
+          <span class="brand-name serif">CA Vivek Singhal</span>
+          <p class="footer-tagline">Chartered Accountant offering audit, assurance and advisory services with the care of a signed report.</p>
+        </span>
+      </div>
+      <div class="footer-contact">
+        <p>Email &middot; <a href="mailto:caviveksinghalca@gmail.com">caviveksinghalca@gmail.com</a></p>
+        <p>WhatsApp &middot; <a href="#" id="footer-wa">+91 90799 36244</a></p>
+      </div>
+    </div>
+    <div class="footer-rule">
+      <span>&copy; <span id="year"></span> CA Vivek Singhal</span>
+      <span>Chartered Accountant &middot; India</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  /* ---------- Theme switching ---------- */
+  const themeBtn = document.getElementById('theme-btn');
+  const themeDropdown = document.getElementById('theme-dropdown');
+
+  themeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = themeDropdown.classList.toggle('open');
+    themeBtn.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', () => {
+    themeDropdown.classList.remove('open');
+    themeBtn.setAttribute('aria-expanded', 'false');
+  });
+
+  document.querySelectorAll('.theme-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.body.setAttribute('data-theme', opt.getAttribute('data-theme'));
+      themeDropdown.classList.remove('open');
+      themeBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ---------- Services data (verbatim, unchanged) ---------- */
+  const services = [
+    "Chartered Accountants",
+    "Accounting Online",
+    "Auditors",
+    "Bank Audit Services",
+    "CISA Certified Auditors",
+    "Cost Auditors",
+    "Financial Due Diligence Services",
+    "Financial Investigative Auditing Services",
+    "Financial Statement Auditing Services",
+    "Group Auditing Services",
+    "IT Audit Services",
+    "Management Audit Services",
+    "NGO / Charity Auditing Services",
+    "Retail Audit Services",
+    "Risk Assurance Services",
+    "Safety Audit Consultants",
+    "Solicitor Auditing Services",
+    "Statutory Audit Services"
+  ];
+
+  const grid = document.getElementById('services-grid');
+  services.forEach((service, i) => {
+    const row = document.createElement('div');
+    row.className = 'ledger-row';
+    row.setAttribute('tabindex', '0');
+    row.setAttribute('role', 'button');
+    row.setAttribute('aria-label', `Enquire about ${service} via WhatsApp`);
+    row.innerHTML = `
+      <span class="ledger-num">${String(i + 1).padStart(2, '0')}</span>
+      <span class="ledger-name">${service}</span>
+      <span class="ledger-cta">Enquire&nbsp;&rarr;</span>
+    `;
+    row.addEventListener('click', () => openWhatsApp(service));
+    row.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWhatsApp(service); }
+    });
+    grid.appendChild(row);
+  });
+
+  /* ---------- WhatsApp linking ---------- */
+  function openWhatsApp(serviceName) {
+    const phoneNumber = "919079936244";
+    const message = `Hi! We wanted the "${serviceName}" service to be done by your firm`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+  }
+  function openWhatsAppGeneral() {
+    const phoneNumber = "919079936244";
+    const message = "Hi! I'd like to enquire about your services.";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+  ['header-wa', 'hero-wa', 'footer-wa'].forEach(id => {
+    document.getElementById(id).addEventListener('click', (e) => {
+      e.preventDefault();
+      openWhatsAppGeneral();
+    });
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrapper = document.getElementById('scroll-wrapper');
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), index * 40);
+          obs.unobserve(entry.target);
         }
+      });
+    }, { root: wrapper, threshold: 0.15 });
 
-        // 2. Services Data (Extracted verbatim from image_6548dd.png)
-        const services = [
-            "Chartered Accountants",
-            "Accounting Online",
-            "Auditors",
-            "Bank Audit Services",
-            "CISA Certified Auditors",
-            "Cost Auditors",
-            "Financial Due Diligence Services",
-            "Financial Investigative Auditing Services",
-            "Financial Statement Auditing Services",
-            "Group Auditing Services",
-            "IT Audit Services",
-            "Management Audit Services",
-            "NGO / Charity Auditing Services",
-            "Retail Audit Services",
-            "Risk Assurance Services",
-            "Safety Audit Consultants",
-            "Solicitor Auditing Services",
-            "Statutory Audit Services"
-        ];
+    document.querySelectorAll('.ledger-row').forEach(row => observer.observe(row));
 
-        // 3. Render Services to Grid
-        const grid = document.getElementById('services-grid');
-        
-        services.forEach(service => {
-            const card = document.createElement('div');
-            card.className = 'service-card';
-            // Click event for WhatsApp routing
-            card.onclick = () => openWhatsApp(service);
-            
-            card.innerHTML = `
-                <h3>${service}</h3>
-                <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.8;">Click to inquire via WhatsApp</p>
-                <div class="whatsapp-icon">💬</div>
-            `;
-            grid.appendChild(card);
-        });
-
-        // 4. WhatsApp Linking Logic
-        function openWhatsApp(serviceName) {
-            // Using standard international format for India (+91) based on standard practice for APIs
-            const phoneNumber = "919079936244"; 
-            const message = `Hi! We wanted the "${serviceName}" service to be done by your firm`;
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            window.open(whatsappUrl, '_blank');
+    const footerObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
         }
+      });
+    }, { root: wrapper, threshold: 0.2 });
+    footerObserver.observe(document.getElementById('footer-inner'));
+  });
 
-        // 5. Scroll Intersection Observer (Enhances the parallax feel as items scroll into view)
-        document.addEventListener("DOMContentLoaded", function() {
-            const cards = document.querySelectorAll('.service-card');
-            
-            const observerOptions = {
-                root: document.getElementById('scroll-wrapper'), // Observe within parallax wrapper
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        // Staggered fade in effect
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                        }, index * 50); 
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            cards.forEach(card => observer.observe(card));
-        });
-    </script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
