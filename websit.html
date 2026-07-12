@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA Vivek Singhal | Professional Services</title>
+    <style>
+        /* =========================================
+           CSS VARIABLES & THEMES
+           ========================================= */
+        :root {
+            /* Theme 85 (Blue-White-Black) - Default */
+            --bg-color: #f0f4f8;
+            --text-color: #0a1128;
+            --primary-color: #004488;
+            --secondary-color: #0066cc;
+            --panel-bg: rgba(255, 255, 255, 0.6);
+            --panel-border: rgba(0, 68, 136, 0.2);
+            --header-bg: rgba(0, 68, 136, 0.95);
+            --header-text: #ffffff;
+        }
+
+        [data-theme="theme88"] {
+            /* Theme 88 (Orange-White-Black) */
+            --bg-color: #faf7f5;
+            --text-color: #1a0f0a;
+            --primary-color: #e65c00;
+            --secondary-color: #ff8533;
+            --panel-bg: rgba(255, 255, 255, 0.7);
+            --panel-border: rgba(230, 92, 0, 0.2);
+            --header-bg: rgba(230, 92, 0, 0.95);
+            --header-text: #ffffff;
+        }
+
+        [data-theme="theme87"] {
+            /* Theme 87 (White/Clean) */
+            --bg-color: #fcfcfc;
+            --text-color: #222222;
+            --primary-color: #444444;
+            --secondary-color: #777777;
+            --panel-bg: rgba(255, 255, 255, 0.8);
+            --panel-border: rgba(0, 0, 0, 0.1);
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-text: #222222;
+        }
+
+        [data-theme="theme83"] {
+            /* Theme 83 (Trust & Captivating) */
+            --bg-color: #eef5f4;
+            --text-color: #1e302d;
+            --primary-color: #128f76;
+            --secondary-color: #18bc9c;
+            --panel-bg: rgba(255, 255, 255, 0.7);
+            --panel-border: rgba(18, 143, 118, 0.2);
+            --header-bg: rgba(18, 143, 118, 0.95);
+            --header-text: #ffffff;
+        }
+
+        [data-theme="ca1"] {
+            /* Dark Blue and White Professional (CA-1) */
+            --bg-color: #0b1426;
+            --text-color: #ccd6f6;
+            --primary-color: #64ffda;
+            --secondary-color: #52e0c4;
+            --panel-bg: rgba(17, 34, 64, 0.6);
+            --panel-border: rgba(100, 255, 218, 0.2);
+            --header-bg: rgba(11, 20, 38, 0.95);
+            --header-text: #64ffda;
+        }
+
+        /* =========================================
+           RESET & BASE
+           ========================================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            transition: all 0.5s ease;
+            overflow-x: hidden; 
+        }
+
+        /* =========================================
+           HEADER
+           ========================================= */
+        header {
+            position: fixed; top: 0; width: 100%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; background: var(--header-bg); color: var(--header-text);
+            z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--panel-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.5s ease;
+        }
+        .animated-title {
+            font-size: 2rem; font-weight: 800; letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--header-text), var(--secondary-color), var(--header-text));
+            background-size: 200% auto; color: transparent;
+            -webkit-background-clip: text; background-clip: text;
+            animation: shine 4s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        /* Theme Selector */
+        .theme-selector { position: relative; display: inline-block; }
+        .theme-btn {
+            background: transparent; color: var(--header-text);
+            border: 1px solid var(--header-text); padding: 8px 25px;
+            font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; border-radius: 30px; transition: all 0.3s ease;
+        }
+        .theme-btn:hover { background: var(--header-text); color: var(--header-bg); }
+        .theme-dropdown {
+            display: none; position: absolute; right: 0; top: 120%;
+            background: var(--bg-color); border: 1px solid var(--panel-border);
+            min-width: 260px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-radius: 8px; overflow: hidden; z-index: 1;
+            animation: fadeIn 0.2s ease forwards;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        .theme-selector:hover .theme-dropdown { display: block; }
+        .theme-option {
+            color: var(--text-color); padding: 15px 20px; text-decoration: none; display: block;
+            cursor: pointer; transition: all 0.2s; font-size: 0.9rem; border-bottom: 1px solid var(--panel-border);
+        }
+        .theme-option:hover { background: var(--primary-color); color: var(--bg-color); padding-left: 25px; }
+
+        /* =========================================
+           3D PARALLAX SCENE (THE CORE EFFECT)
+           ========================================= */
+        .scene {
+            padding-top: 150px; padding-bottom: 100px;
+            perspective: 1200px; /* Establishes the 3D space */
+            display: flex; flex-direction: column; align-items: center;
+            overflow: hidden;
+        }
+        .scene-title {
+            font-size: 1.2rem; text-transform: uppercase; letter-spacing: 5px;
+            color: var(--primary-color); margin-bottom: 60px; font-weight: 600;
+        }
+
+        /* Professional Service Rows */
+        .service-row {
+            width: 80%; max-width: 1000px; padding: 40px 50px; margin-bottom: -15px;
+            background: var(--panel-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--panel-border); border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; position: relative; transition: border-color 0.3s ease;
+            
+            /* 3D Transform defaults (will be overridden by JS based on scroll) */
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* Add a sleek hover state that doesn't break the JS parallax */
+        .service-row::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 12px; border: 2px solid var(--primary-color);
+            opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+        }
+        .service-row:hover::after { opacity: 1; }
+
+        .service-info h2 {
+            font-size: 1.8rem; font-weight: 300; letter-spacing: 1px; color: var(--text-color); margin-bottom: 8px;
+            /* Give the text itself a slight 3D pop */
+            transform: translateZ(30px);
+        }
+        .service-action {
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--secondary-color); font-weight: 600;
+            display: flex; align-items: center; gap: 10px;
+            transform: translateZ(20px);
+        }
+        .service-action span { transition: transform 0.3s ease; }
+        .service-row:hover .service-action span { transform: translateX(5px); }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background: var(--header-bg); color: var(--header-text);
+            text-align: center; padding: 50px 20px;
+            position: relative; z-index: 10; border-top: 1px solid var(--panel-border);
+        }
+        .footer-content { animation: pulseFooter 4s infinite alternate; }
+        @keyframes pulseFooter { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(1.03); opacity: 1; } }
+        footer p { margin: 10px 0; font-size: 1.2rem; font-weight: 300; }
+        footer strong { font-weight: 600; color: var(--secondary-color); letter-spacing: 1px;}
+        [data-theme="theme87"] footer strong, [data-theme="ca1"] footer strong { color: var(--primary-color); }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; height: auto; padding: 20px; }
+            .theme-selector { margin-top: 20px; }
+            .service-row { width: 95%; flex-direction: column; align-items: flex-start; padding: 30px; gap: 20px; }
+            .scene { padding-top: 180px; }
+        }
+    </style>
+</head>
+<body data-theme="theme85">
+
+    <header>
+        <div class="animated-title">CA Vivek Singhal</div>
+        <div class="theme-selector">
+            <button class="theme-btn">Select Theme ▼</button>
+            <div class="theme-dropdown">
+                <div class="theme-option" onclick="changeTheme('theme88')">Theme 88 (Orange-White-Black)</div>
+                <div class="theme-option" onclick="changeTheme('theme85')">Theme 85 (Blue-White-Black)</div>
+                <div class="theme-option" onclick="changeTheme('theme87')">Theme 87 (White/Clean)</div>
+                <div class="theme-option" onclick="changeTheme('theme83')">Theme 83 (Trust & Captivating)</div>
+                <div class="theme-option" onclick="changeTheme('ca1')">Dark Blue & White (CA-1)</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="scene" id="parallax-scene">
+        <div class="scene-title">Areas of Expertise</div>
+        <!-- Services will be dynamically generated here -->
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>For more services contact us at Email: <strong>caviveksinghalca@gmail.com</strong></p>
+            <p>Or drop us a greeting at <strong>9079936244</strong></p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Theme Logic
+        function changeTheme(themeName) { document.body.setAttribute('data-theme', themeName); }
+
+        // 2. Services Data
+        const services = [
+            "Chartered Accountants", "Accounting Online", "Auditors",
+            "Bank Audit Services", "CISA Certified Auditors", "Cost Auditors",
+            "Financial Due Diligence Services", "Financial Investigative Auditing Services",
+            "Financial Statement Auditing Services", "Group Auditing Services",
+            "IT Audit Services", "Management Audit Services", "NGO / Charity Auditing Services",
+            "Retail Audit Services", "Risk Assurance Services", "Safety Audit Consultants",
+            "Solicitor Auditing Services", "Statutory Audit Services"
+        ];
+
+        // 3. Render High-End Service Rows
+        const scene = document.getElementById('parallax-scene');
+        
+        services.forEach((service, index) => {
+            const row = document.createElement('div');
+            row.className = 'service-row';
+            row.onclick = () => openWhatsApp(service);
+            
+            // Stagger horizontal position slightly for a dynamic cascade effect
+            const offset = (index % 2 === 0) ? '-2%' : '2%';
+            row.style.left = offset;
+
+            row.innerHTML = `
+                <div class="service-info">
+                    <h2>${service}</h2>
+                </div>
+                <div class="service-action">
+                    Consult via WhatsApp <span>➔</span>
+                </div>
+            `;
+            scene.appendChild(row);
+        });
+
+        // 4. WhatsApp Linking
+        function openWhatsApp(serviceName) {
+            const phoneNumber = "919079936244"; 
+            const message = `Hi! We wanted the "${serviceName}" service to be done by your firm`;
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // 5. Advanced Dynamic 3D Parallax Scrolling Engine
+        const serviceRows = document.querySelectorAll('.service-row');
+        let windowHeight = window.innerHeight;
+
+        window.addEventListener('resize', () => { windowHeight = window.innerHeight; });
+
+        function applyParallax() {
+            serviceRows.forEach(row => {
+                const rect = row.getBoundingClientRect();
+                const rowCenter = rect.top + (rect.height / 2);
+                const viewportCenter = windowHeight / 2;
+                
+                // Distance from the center of the screen (-1 to 1)
+                const distance = (rowCenter - viewportCenter) / (windowHeight / 2);
+                
+                // --- The Math for the 3D Effect ---
+                // As the element gets further from the center, it pushes back in Z-space, 
+                // tilts on the X-axis, and shifts slightly on the Y-axis.
+                
+                // Depth: Max push back is 400px when at the edges of the screen
+                const translateZ = Math.abs(distance) * -400; 
+                
+                // Tilt: Rotates like a rolling cylinder
+                const rotateX = distance * -35; 
+                
+                // Speed override: Moves slightly faster than normal scroll
+                const translateY = distance * 50; 
+                
+                // Opacity fade at extreme edges
+                const opacity = 1 - Math.pow(Math.abs(distance), 2.5);
+
+                row.style.transform = `translate3d(0, ${translateY}px, ${translateZ}px) rotateX(${rotateX}deg)`;
+                row.style.opacity = Math.max(opacity, 0.1);
+            });
+            
+            requestAnimationFrame(applyParallax);
+        }
+
+        // Start the engine
+        requestAnimationFrame(applyParallax);
+    </script>
+</body>
+</html>
