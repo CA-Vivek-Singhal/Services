@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA Vivek Singhal</title>
+    <style>
+        /* =========================================
+           CSS VARIABLES & THEMES
+           ========================================= */
+        :root {
+            /* Default: Theme 85 (Blue-White-Black) */
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --primary-color: #004488;
+            --secondary-color: #0066cc;
+            --card-bg: rgba(245, 247, 250, 0.9);
+            --header-bg: rgba(0, 68, 136, 0.9);
+            --header-text: #ffffff;
+        }
+
+        [data-theme="theme88"] {
+            /* Theme 88 (Orange-White-Black) */
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --primary-color: #ff6600;
+            --secondary-color: #ff8533;
+            --card-bg: rgba(255, 245, 238, 0.9);
+            --header-bg: rgba(255, 102, 0, 0.9);
+            --header-text: #ffffff;
+        }
+
+        [data-theme="theme87"] {
+            /* Theme 87 (White/Clean) */
+            --bg-color: #fcfcfc;
+            --text-color: #333333;
+            --primary-color: #555555;
+            --secondary-color: #888888;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-text: #222222;
+        }
+
+        [data-theme="theme83"] {
+            /* Theme 83 (Trust & Captivating) */
+            --bg-color: #f4f7f6;
+            --text-color: #2c3e50;
+            --primary-color: #18bc9c;
+            --secondary-color: #128f76;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --header-bg: rgba(24, 188, 156, 0.9);
+            --header-text: #ffffff;
+        }
+
+        [data-theme="ca1"] {
+            /* Dark Blue and White Professional (CA-1) */
+            --bg-color: #0a192f;
+            --text-color: #e6f1ff;
+            --primary-color: #64ffda;
+            --secondary-color: #52e0c4;
+            --card-bg: rgba(17, 34, 64, 0.9);
+            --header-bg: rgba(10, 25, 47, 0.95);
+            --header-text: #64ffda;
+        }
+
+        /* =========================================
+           RESET & BASE STYLES
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            overflow: hidden; /* Hide body scroll, handle scroll in parallax wrapper */
+        }
+
+        /* =========================================
+           HEADER & NAVIGATION
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: var(--header-bg);
+            color: var(--header-text);
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+        }
+
+        /* Animated Title */
+        .animated-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--header-text), var(--secondary-color), var(--header-text));
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Theme Selector (Hover Down Button) */
+        .theme-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .theme-btn {
+            background-color: transparent;
+            color: var(--header-text);
+            border: 2px solid var(--header-text);
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            background-color: var(--header-text);
+            color: var(--header-bg);
+        }
+
+        .theme-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: var(--card-bg);
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1;
+            margin-top: 10px;
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .theme-selector:hover .theme-dropdown {
+            display: block;
+        }
+
+        .theme-option {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(128,128,128,0.1);
+        }
+
+        .theme-option:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* =========================================
+           3D PARALLAX SCROLLING WRAPPER
+           ========================================= */
+        .parallax-wrapper {
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            perspective: 10px; /* The soul of the 3D effect */
+            scroll-behavior: smooth;
+        }
+
+        .parallax-group {
+            position: relative;
+            height: 100vh;
+            transform-style: preserve-3d;
+        }
+
+        /* Background Layer (Moves slower) */
+        .parallax-layer-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            transform: translateZ(-10px) scale(2.1);
+            z-index: -1;
+            background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Decorational Background Elements */
+        .bg-shape {
+            position: absolute;
+            background: var(--primary-color);
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+        .shape1 { width: 50vw; height: 50vw; top: -10%; left: -10%; }
+        .shape2 { width: 40vw; height: 40vw; bottom: 20%; right: -5%; }
+
+        /* Foreground Layer (Scrolls normally) */
+        .parallax-layer-fg {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            transform: translateZ(0);
+            z-index: 1;
+            padding-top: 120px; /* Offset for header */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* =========================================
+           SERVICES SECTION
+           ========================================= */
+        .services-section {
+            padding: 40px 5%;
+            flex: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding-bottom: 60px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            
+            /* Scroll Animation Defaults */
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .service-card:hover h3 { color: #ffffff; }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .whatsapp-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.2;
+            font-size: 1.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover .whatsapp-icon {
+            opacity: 1;
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background: var(--header-bg);
+            color: var(--header-text);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            animation: pulseFooter 3s infinite;
+        }
+
+        @keyframes pulseFooter {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        footer a {
+            color: var(--secondary-color);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        [data-theme="theme87"] footer a { color: var(--primary-color); }
+        [data-theme="ca1"] footer a { color: var(--primary-color); }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px; }
+            .theme-selector { margin-top: 15px; }
+            .parallax-layer-fg { padding-top: 150px; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body data-theme="theme85"> <!-- Default Theme -->
+
+    <!-- Header -->
+    <header>
+        <div class="animated-title">CA Vivek Singhal</div>
+        <div class="theme-selector">
+            <button class="theme-btn">Select Theme ▼</button>
+            <div class="theme-dropdown">
+                <div class="theme-option" onclick="changeTheme('theme88')">Theme 88 (Orange-White-Black)</div>
+                <div class="theme-option" onclick="changeTheme('theme85')">Theme 85 (Blue-White-Black)</div>
+                <div class="theme-option" onclick="changeTheme('theme87')">Theme 87 (White/Clean)</div>
+                <div class="theme-option" onclick="changeTheme('theme83')">Theme 83 (Trust & Captivating)</div>
+                <div class="theme-option" onclick="changeTheme('ca1')">Dark Blue & White (CA-1)</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Parallax Scroll Wrapper -->
+    <div class="parallax-wrapper" id="scroll-wrapper">
+        <div class="parallax-group">
+            
+            <!-- Layer 1: Background (Moves slowly to create depth) -->
+            <div class="parallax-layer-bg">
+                <div class="bg-shape shape1"></div>
+                <div class="bg-shape shape2"></div>
+            </div>
+
+            <!-- Layer 2: Foreground Content -->
+            <div class="parallax-layer-fg">
+                <main class="services-section">
+                    <h2 class="section-title">Our Professional Services</h2>
+                    <div class="services-grid" id="services-grid">
+                        <!-- Services dynamically injected by JavaScript -->
+                    </div>
+                </main>
+
+                <!-- Animated Footer -->
+                <footer>
+                    <div class="footer-content">
+                        <p>For more services contact us at Email: <strong>caviveksinghalca@gmail.com</strong></p>
+                        <p>Or drop us a greeting at <strong>9079936244</strong></p>
+                    </div>
+                </footer>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 1. Theme Switcher Logic
+        function changeTheme(themeName) {
+            document.body.setAttribute('data-theme', themeName);
+        }
+
+        // 2. Services Data (Extracted verbatim from image_6548dd.png)
+        const services = [
+            "Chartered Accountants",
+            "Accounting Online",
+            "Auditors",
+            "Bank Audit Services",
+            "CISA Certified Auditors",
+            "Cost Auditors",
+            "Financial Due Diligence Services",
+            "Financial Investigative Auditing Services",
+            "Financial Statement Auditing Services",
+            "Group Auditing Services",
+            "IT Audit Services",
+            "Management Audit Services",
+            "NGO / Charity Auditing Services",
+            "Retail Audit Services",
+            "Risk Assurance Services",
+            "Safety Audit Consultants",
+            "Solicitor Auditing Services",
+            "Statutory Audit Services"
+        ];
+
+        // 3. Render Services to Grid
+        const grid = document.getElementById('services-grid');
+        
+        services.forEach(service => {
+            const card = document.createElement('div');
+            card.className = 'service-card';
+            // Click event for WhatsApp routing
+            card.onclick = () => openWhatsApp(service);
+            
+            card.innerHTML = `
+                <h3>${service}</h3>
+                <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.8;">Click to inquire via WhatsApp</p>
+                <div class="whatsapp-icon">💬</div>
+            `;
+            grid.appendChild(card);
+        });
+
+        // 4. WhatsApp Linking Logic
+        function openWhatsApp(serviceName) {
+            // Using standard international format for India (+91) based on standard practice for APIs
+            const phoneNumber = "919079936244"; 
+            const message = `Hi! We wanted the "${serviceName}" service to be done by your firm`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // 5. Scroll Intersection Observer (Enhances the parallax feel as items scroll into view)
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll('.service-card');
+            
+            const observerOptions = {
+                root: document.getElementById('scroll-wrapper'), // Observe within parallax wrapper
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Staggered fade in effect
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 50); 
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => observer.observe(card));
+        });
+    </script>
+</body>
+</html>
